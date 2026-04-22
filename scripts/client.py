@@ -3,17 +3,17 @@ import requests
 import argparse
 import os
 
-# The deployed Vercel URL (replace with your real one once deployed)
-GATEWAY_URL = os.getenv("COST_KILLER_URL", "https://cost-killer-ai.vercel.app/api/chat")
+# The deployed Vercel URL or Local Gateway
+GATEWAY_URL = os.getenv("COST_KILLER_URL", "http://localhost:8000/api/chat")
 
 def main():
     parser = argparse.ArgumentParser(description="Cost-Killer AI: Local Client")
     parser.add_argument("prompt", help="The prompt to send to the router")
-    parser.add_argument("--key", help="Your Cost-Killer License Key", default=os.getenv("COST_KILLER_KEY"))
+    parser.add_argument("--key", help="Your License Key", default=os.getenv("COST_KILLER_KEY", "USER_PRIMARY"))
     args = parser.parse_args()
 
     if not args.key:
-        print("Error: No License Key provided. Get one at: https://cost-killer-ai.vercel.app/buy")
+        print("Error: No License Key provided.")
         sys.exit(1)
 
     print(f"--- Routing to {GATEWAY_URL} ---")
@@ -28,17 +28,19 @@ def main():
         response.raise_for_status()
         data = response.json()
         
-        print(f"\n[Model: {data['model_used']}]")
-        print(f"[Savings: ${data['savings']:.4f}]")
-        print("-" * 20)
-        print(data['content'])
-        print("-" * 20)
+        # v5.0 Meta-data structure
+        meta = data.get('metadata', {})
+        print(f"\n[Model: {meta.get('model', 'Unknown')}]")
+        print(f"[Savings: {meta.get('savings', '$0.00')}]")
+        print(f"[Latency: {meta.get('latency', '0s')}]")
+        print("-" * 40)
+        print(data.get('content', 'No content returned'))
+        print("-" * 40)
         
     except requests.exceptions.HTTPError as e:
-        if e.response.status_code == 403:
-            print(f"Billing Error: {e.response.json()['detail']}")
-        else:
-            print(f"Network Error: {e}")
+        print(f"API Error: {e.response.json().get('error', str(e))}")
+    except Exception as e:
+        print(f"Network Error: {e}")
 
 if __name__ == "__main__":
     main()

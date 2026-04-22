@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Llama-4-Scout",
+        "provider": "meta",
+        "full_id": "groq/llama-4-scout-70b",
+        "cost": 0.0005,
+        "type": "remote",
+        "self_qualified_score": 80.0
+    }
+]
