@@ -9,11 +9,13 @@ Inspired by the patterns used in OpenClaw and Hermes, this gateway transitions y
 ## 🔥 Key Features
 
 - **🧠 Agentic Cascading Logic**: Automatically tiers tasks. Code and complex reasoning go to Claude 3.5 or Kimi K2.6. Simple classification and formatting go to your **Local Hardware**.
+- **🧠 Omni-Agent Bridge**: Multi-channel intent classifier. Send natural language to trigger voice calls (Vapi/Twilio) or log Notion tasks directly from your terminal.
 - **🧠 Compounding Knowledge Brain**: Built-in local memory system. Ingest sources (PDFs, docs, code) to build a persistent brain that provides zero-cost context to your requests.
 - **🌐 Active Discovery**: On install, the gateway scans your computer for **Ollama**, **LM Studio**, and **HuggingFace** caches. It prioritizes the silicon you already own.
-- **⚡ Semantic Caching**: Intercepts repeating queries for **0ms latency** and **$0.00 cost**.
+- **⚡ Semantic Vector Caching**: Intercepts repeating queries for **0ms latency** and **$0.00 cost** by understanding the *meaning* of prompts.
 - **🛠️ MCP / Tool Calling Bridge**: Full support for OpenAI/Anthropic tool schemas. Forward tool calls from your agent frameworks through our gateway.
-- **📈 Self-Qualifying Models**: Ranks models based on real-world telemetry (success rate, latency-per-token) from your own logs, not just popularity.
+- **📈 Self-Qualifying Models**: Ranks models based on real-world telemetry (success rate, latency-per-token) from your own logs.
+- **📊 Real-Time Unit Economics**: Track your exact profitability per AI handoff with the built-in micro-billing ledger.
 - **💎 Monetization Ready**: Built-in license key and credit-based billing system. 
 
 ---
@@ -58,11 +60,14 @@ python3 scripts/client.py "Write a rust function for a blockchain node"
 ```
 
 ### 4. Build Your Local Brain
-Ingest a document into your persistent memory:
 ```bash
 python3 scripts/brain.py --ingest "roadmap.pdf" --summary "Q2 Strategy and Goals"
 ```
-The router can now reference this context to improve its responses without re-reading the source.
+
+### 5. Multi-Channel Omni-Agent
+```bash
+python3 scripts/omni_agent.py "Call Sarah about the gym schedule"
+```
 
 ---
 

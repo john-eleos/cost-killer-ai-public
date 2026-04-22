@@ -33,6 +33,7 @@ def main():
         print(f"\n[Model: {meta.get('model', 'Unknown')}]")
         print(f"[Savings: {meta.get('savings', '$0.00')}]")
         print(f"[Latency: {meta.get('latency', '0s')}]")
+        print(f"[Unit Economics Fee: {meta.get('unit_economics_fee', '$0.00')}]")
         print("-" * 40)
         print(data.get('content', 'No content returned'))
         print("-" * 40)
