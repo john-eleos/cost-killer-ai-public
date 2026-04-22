@@ -9,6 +9,7 @@ Inspired by the patterns used in OpenClaw and Hermes, this gateway transitions y
 ## 🔥 Key Features
 
 - **🧠 Agentic Cascading Logic**: Automatically tiers tasks. Code and complex reasoning go to Claude 3.5 or Kimi K2.6. Simple classification and formatting go to your **Local Hardware**.
+- **🧠 Compounding Knowledge Brain**: Built-in local memory system. Ingest sources (PDFs, docs, code) to build a persistent brain that provides zero-cost context to your requests.
 - **🌐 Active Discovery**: On install, the gateway scans your computer for **Ollama**, **LM Studio**, and **HuggingFace** caches. It prioritizes the silicon you already own.
 - **⚡ Semantic Caching**: Intercepts repeating queries for **0ms latency** and **$0.00 cost**.
 - **🛠️ MCP / Tool Calling Bridge**: Full support for OpenAI/Anthropic tool schemas. Forward tool calls from your agent frameworks through our gateway.
@@ -52,10 +53,16 @@ client = openai.OpenAI(
 ```
 
 ### 3. Use the CLI Client
-We provide a standalone client for quick testing:
 ```bash
 python3 scripts/client.py "Write a rust function for a blockchain node"
 ```
+
+### 4. Build Your Local Brain
+Ingest a document into your persistent memory:
+```bash
+python3 scripts/brain.py --ingest "roadmap.pdf" --summary "Q2 Strategy and Goals"
+```
+The router can now reference this context to improve its responses without re-reading the source.
 
 ---
 
